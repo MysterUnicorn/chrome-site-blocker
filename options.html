@@ -6,6 +6,7 @@
 <body>
   <h1>Website Blocker Settings</h1>
 
+  <h2>Block Sites</h2>
   <table>
     <thead>
       <tr>
@@ -19,11 +20,33 @@
     <tfoot>
       <tr>
         <th scope="row"></th>
-        <td><input id="new-entry"></input></td>
-        <td><button id="addNewRow">Add Entry</button></td>
+        <td><input id="block-new-entry"></input></td>
+        <td><button id="block-append-row">Add Entry</button></td>
       </tr>
     </tfoot>
   </table>
+
+  <h2>Cover Elements</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Site</th>
+        <th scope="col">Selector</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="to-cover-element-list">
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row"></th>
+        <td><input id="cover-new-site"></input></td>
+        <td><input id="cover-new-selector"></input></td>
+        <td><button id="cover-append-row">Add Entry</button></td>
+      </tr>
+    </tfoot>
   
   <script src="options.js"></script>
 </body>
