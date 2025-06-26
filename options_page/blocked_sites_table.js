@@ -1,4 +1,4 @@
-class BlockedSitesTable {
+export class BlockedSitesTable {
   constructor(tableId, inputId, appendRowButtonId) {
     this.table = document.getElementById(tableId);
     this.input = document.getElementById(inputId);
@@ -31,7 +31,7 @@ class BlockedSitesTable {
 
   createRowHTTPTemplate(id, site) {
     var template = document.createElement('template');
-    template.innerHTML = `<tr><th scope="row">${id}</th><td>${site}</td><td><button id="removeRow${id}">Remove</button></td></tr>`;
+    template.innerHTML = `<tr><th scope="row">${id}</th><td>${site}</td><td><button id="removeRowBlockedSites${id}">Remove</button></td></tr>`;
     return template.content.childNodes[0];
   }
 
@@ -42,7 +42,7 @@ class BlockedSitesTable {
     sortedRules.forEach((rule) => {
       var rowNode = this.createRowHTTPTemplate(rule["id"], rule["condition"]["urlFilter"].replace("||", ""));
       this.table.appendChild(rowNode);
-      document.getElementById(`removeRow${rule["id"]}`).addEventListener("click", async () => {
+      document.getElementById(`removeRowBlockedSites${rule["id"]}`).addEventListener("click", async () => {
         await this.removeRow(rule["id"]);
       });
     });
@@ -60,7 +60,3 @@ class BlockedSitesTable {
     this.reloadTable();
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  new BlockedSitesTable("to-block-site-list", "block-new-entry", "block-append-row");
-});

@@ -2,8 +2,8 @@
     "manifest_version": 3,
     "name": "Site Blocker",
     "version": "1.0",
-    "permissions": ["declarativeNetRequest", "declarativeNetRequestWithHostAccess"],
-    "options_page": "options.html",
+    "permissions": ["declarativeNetRequest", "declarativeNetRequestWithHostAccess", "storage"],
+    "options_page": "options_page/main.html",
     "host_permissions": ["<all_urls>"],
     "content_scripts": [{
         "matches": ["<all_urls>"],
