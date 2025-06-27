@@ -9,15 +9,15 @@ function setToStorage(key, value) {
   });
 }
 
-export class CoveredElementsTable {
+export class ConcealedElementsTable {
   constructor(tableId, siteInputId, selectorInputId, appendRowButtonId) {
     this.table = document.getElementById(tableId);
     this.siteInput = document.getElementById(siteInputId);
     this.selectorInput = document.getElementById(selectorInputId);
     this.appendRowButton = document.getElementById(appendRowButtonId);
-    this.getRules = async () => {return (await getFromStorage("coveredElements")) || {}};
+    this.getRules = async () => {return (await getFromStorage("concealedElements")) || {}};
     this.updateRules = async (rules) => {
-      return await setToStorage("coveredElements", rules);
+      return await setToStorage("concealedElements", rules);
     };
     this.init();
   }
@@ -45,7 +45,7 @@ export class CoveredElementsTable {
 
   createRowTemplate(id, site, selector) {
     var template = document.createElement('template');
-    template.innerHTML = `<tr><th scope="row">${id}</th><td>${site}</td><td>${selector}</td><td><button id="removeRowCoveredElement${id}">Remove</button></td></tr>`;
+    template.innerHTML = `<tr><th scope="row">${id}</th><td>${site}</td><td>${selector}</td><td><button id="removeRowConcealedElement${id}">Remove</button></td></tr>`;
     return template.content.childNodes[0];
   }
 
@@ -58,7 +58,7 @@ export class CoveredElementsTable {
       const rule = rules[key];
       var rowNode = this.createRowTemplate(key, rule.site, rule.selector);
       this.table.appendChild(rowNode);
-      document.getElementById(`removeRowCoveredElement${key}`).addEventListener("click", async () => {
+      document.getElementById(`removeRowConcealedElement${key}`).addEventListener("click", async () => {
         await this.removeRow(key);
       });
     });

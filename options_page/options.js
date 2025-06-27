@@ -1,9 +1,9 @@
 import { BlockedSitesTable } from './blocked_sites_table.js';
-import { CoveredElementsTable } from './covered_elements_table.js';
+import { ConcealedElementsTable } from './concealed_elements_table.js';
 
 
 document.addEventListener("DOMContentLoaded", () => {
   new BlockedSitesTable("block-sites-table", "block-site-input", "block-append-row");
-  new CoveredElementsTable("covered-elements-table", "cover-site-input", "cover-selector-input", "cover-append-row");
+  new ConcealedElementsTable("concealed-elements-table", "conceal-site-input", "conceal-selector-input", "conceal-append-row");
 });
 

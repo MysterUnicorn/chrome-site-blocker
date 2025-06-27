@@ -36,24 +36,32 @@ document.addEventListener('chrome-extension-request', (event) => {
   });
 });
 
-// Inject the redirect_interceptor script
-const script = document.createElement('script');
-const url = chrome.runtime.getURL('redirect_interceptor.js');
+scriptsToInject = [
+  'main_world_scripts/chrome_extension_proxy.js',
+  'main_world_scripts/element_concealer.js',
+  'main_world_scripts/redirect_interceptor.js'
+];
 
-console.log('Injecting redirect_interceptor from:', url);
+scriptsToInject.forEach(scriptName => {
 
-script.src = url;
+  const script = document.createElement('script');
+  const url = chrome.runtime.getURL(scriptName);
 
-script.onload = () => {
-  console.log('✅ redirect_interceptor.js loaded successfully');
-  script.remove();
-};
+  console.log('Injecting script from:', url);
 
-script.onerror = (error) => {
-  console.error('❌ Failed to load redirect_interceptor.js:', error);
-};
+  script.src = url;
 
-(document.head || document.documentElement).appendChild(script);
+  script.onload = () => {
+    console.log(`✅ ${scriptName} loaded successfully`);
+    script.remove();
+  };
 
+  script.onerror = (error) => {
+    console.error(`❌ Failed to load ${scriptName}: `, error);
+  };
 
-console.log('Extension content script loaded and ready');
+  (document.head || document.documentElement).appendChild(script);  
+
+});
+
+console.log('Extension content scripts loaded and ready');

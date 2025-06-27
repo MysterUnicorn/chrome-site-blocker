@@ -24,6 +24,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           });
           break;
           
+        case 'storageGet':
+          console.log('Storage get keys:', message.payload);
+          chrome.storage.local.get(message.payload, (result) => {
+            console.log('Storage get result:', result);
+            if (chrome.runtime.lastError) {
+              sendResponse({ success: false, error: chrome.runtime.lastError.message, requestId: message.requestId });
+            } else {
+              sendResponse({ success: true, data: result, requestId: message.requestId });
+            }
+          });
+          break;
+
+          
         default:
           sendResponse({ 
             success: false, 

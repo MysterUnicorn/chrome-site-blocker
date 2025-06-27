@@ -11,7 +11,10 @@
         "run_at": "document_start"
     }],
     "web_accessible_resources": [{
-        "resources": ["redirect_interceptor.js"],
+        "resources": [
+            "main_world_scripts/redirect_interceptor.js",
+            "main_world_scripts/element_concealer.js",
+            "main_world_scripts/chrome_extension_proxy.js"],
         "matches": ["<all_urls>"]
     }],
     "background": {
